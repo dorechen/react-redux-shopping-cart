@@ -21,7 +21,7 @@ export function Shop() {
     
   const renderShop =
     products.map((product) => (
-    <div key={product.name} className={styles.row}>
+    <div key={product.name} className={styles.productRow}>
       <span className={styles.value}>{product.name}</span>
       <span className={styles.value}>${product.price.toFixed(2)}</span>
       <button
@@ -33,10 +33,11 @@ export function Shop() {
     ))
 
     const renderCart = Object.entries(cart).map(([key,{price, quantity}]) => (
-      <div key={key}>
-        <span className={styles.value}>{quantity}</span>
+      <div key={key} className={styles.cartRow}>
         <span className={styles.value}>{key}</span>
-        <span className={styles.value}>${price}</span>
+        <span className={styles.value}>${price.toFixed(2)}</span>
+        <span className={styles.value}>{quantity}</span>
+        <span className={styles.value}>{(quantity*price).toFixed(2)}</span>
         <button
           className={styles.button}
           aria-label="Increment value"
@@ -51,9 +52,19 @@ export function Shop() {
 
   return (
     <div>
-      <h1>Shop</h1>
+      <h1>Shop Products</h1>
+      <div key="product headers" className={styles.productRow}>
+        <span className={styles.headers}>Name</span>
+        <span className={styles.headers}>Price</span>
+      </div>
       {renderShop}
       <h1>Cart</h1>
+      <div key="cart headers" className={styles.cartRow}>
+        <span className={styles.headers}>Name</span>
+        <span className={styles.headers}>Price</span>
+        <span className={styles.headers}>Quantity</span>
+        <span className={styles.headers}>Subtotal</span>
+      </div>
       {renderCart}
       <span className={styles.value}>Cart Total Value: ${renderCartTotal}</span>
     </div>
