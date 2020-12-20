@@ -40,6 +40,6 @@ export const shopSlice = createSlice({
 
 export const { addItem, removeItem } = shopSlice.actions;
 
-export const selectCartItems = state => state.shop.cartItems;
+export const selectCartItems = state => state.cartItems;
 
 export default shopSlice.reducer;
